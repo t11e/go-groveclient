@@ -116,7 +116,8 @@ func (client *Client) GetMany(uids []string, options GetOptions) (*GetOutput, er
 
 	resp, err := client.httpClient.Do(req)
 	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("Failed with status code %d: %s", resp.StatusCode, resp.Status)
+		return nil, fmt.Errorf("Request [GET %s] failed with status code %d: %s",
+			url, resp.StatusCode, resp.Status)
 	}
 
 	var output GetOutput
