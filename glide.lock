@@ -1,0 +1,10 @@
+hash: 13e789d65a920b35282f522c27710e63cc4dda9ff7ba76e73fadff5e31137898
+updated: 2016-05-02T17:38:58.953093798-04:00
+imports:
+- name: github.com/stretchr/testify
+  version: c5d7a69bf8a2c9c374798160849c071093e41dd1
+  subpackages:
+  - assert
+- name: github.com/t11e/go-pebbleclient
+  version: 095f795c7951b020a0690178bdde11a1fe458277
+devImports: []
