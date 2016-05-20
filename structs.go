@@ -58,3 +58,7 @@ func (post *Post) extractDocumentAttributes(raw *json.RawMessage) (DocumentAttri
 	}
 	return attrs, nil
 }
+
+type PostItem struct {
+	Post *Post `json:"post"`
+}
