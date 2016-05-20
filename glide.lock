@@ -1,5 +1,5 @@
 hash: d75ae73d140e4ec3910ab525d417ba93c55aff949ba51cf1374f6ebd6985b26c
-updated: 2016-05-20T13:56:38.907107118-04:00
+updated: 2016-05-20T14:22:29.727927334-04:00
 imports:
 - name: github.com/ernesto-jimenez/httplogger
   version: 86cc44f6150a7e9dca8586e425a9c73e71f8ae7d
@@ -10,7 +10,7 @@ imports:
   subpackages:
   - assert
 - name: github.com/t11e/go-pebbleclient
-  version: 7e20e235c9d9d6cc62f9949df1eb8d50130528ef
+  version: c2ebe0efdd59c1f97be0a88888b55dbba6d71352
 - name: golang.org/x/net
   version: 8a52c78636f6b7be1b1e5cb58b01a85f1e082659
   subpackages:
