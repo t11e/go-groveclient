@@ -1,7 +1,6 @@
 package groveclient
 
 import (
-	"fmt"
 	"strings"
 
 	pc "github.com/t11e/go-pebbleclient"
@@ -34,7 +33,7 @@ func (client *Client) Get(uid string, options GetOptions) (*PostItem, error) {
 	}
 
 	var out PostItem
-	err := client.c.Get(fmt.Sprintf("/posts/%s", uid), &pc.RequestOptions{
+	err := client.c.Get(pc.FormatPath("/posts/:uid", pc.Params{"uid": uid}), &pc.RequestOptions{
 		Params: params,
 	}, &out)
 	if err != nil {
@@ -57,7 +56,7 @@ func (client *Client) GetMany(uids []string, options GetManyOptions) (*GetManyOu
 	}
 
 	var out GetManyOutput
-	err := client.c.Get(fmt.Sprintf("/posts/%s", uidList), &pc.RequestOptions{
+	err := client.c.Get(pc.FormatPath("/posts/:uids", pc.Params{"uids": uidList}), &pc.RequestOptions{
 		Params: params,
 	}, &out)
 	if err != nil {
