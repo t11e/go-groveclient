@@ -24,7 +24,10 @@ type GetManyOutput struct {
 }
 
 func New(client pc.Client) (*Client, error) {
-	return &Client{client}, nil
+	return &Client{client.Options(pc.Options{
+		ServiceName: "grove",
+		ApiVersion:  1,
+	})}, nil
 }
 
 func (client *Client) Get(uid string, options GetOptions) (*PostItem, error) {
