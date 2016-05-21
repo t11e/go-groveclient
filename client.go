@@ -30,8 +30,15 @@ type GetManyOutput struct {
 	Posts []PostItem `json:"posts"`
 }
 
+// Register registers us in a connector.
+func Register(connector *pc.Connector) {
+	connector.Register((*Client)(nil), func(client pc.Client) (pc.Service, error) {
+		return New(client)
+	})
+}
+
 func New(pebbleClient pc.Client) (Client, error) {
-	return &client{pebbleClient.Options(pc.Options{
+	return &client{pebbleClient.WithOptions(pc.Options{
 		ServiceName: "grove",
 		ApiVersion:  1,
 	})}, nil
