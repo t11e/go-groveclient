@@ -6,6 +6,8 @@ import (
 	pc "github.com/t11e/go-pebbleclient"
 )
 
+//go:generate go run vendor/github.com/vektra/mockery/cmd/mockery/mockery.go -name=Client -case=underscore
+
 type Client interface {
 	Get(uid string, options GetOptions) (*PostItem, error)
 	GetMany(uids []string, options GetManyOptions) (*GetManyOutput, error)

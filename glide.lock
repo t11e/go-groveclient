@@ -1,18 +1,31 @@
-hash: d75ae73d140e4ec3910ab525d417ba93c55aff949ba51cf1374f6ebd6985b26c
-updated: 2016-05-20T16:15:52.14786242-04:00
+hash: b92cb6e6ff1befa9a5e8409d0a6dc2f612394720f1adff0a4bd393e566b66f81
+updated: 2016-05-21T14:34:25.726263705-04:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
+  subpackages:
+  - spew
 - name: github.com/ernesto-jimenez/httplogger
   version: 86cc44f6150a7e9dca8586e425a9c73e71f8ae7d
 - name: github.com/pkg/errors
   version: f85d45fecf0c92c382e731cb03f481957e2ccdd1
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
+- name: github.com/stretchr/objx
+  version: cbeaeb16a013161a98496fad62933b1d21786672
 - name: github.com/stretchr/testify
-  version: 6cb3b85ef5a0efef77caef88363ec4d4b5c0976d
+  version: f390dcf405f7b83c997eac1b06768bb9f44dec18
   subpackages:
   - assert
+  - mock
 - name: github.com/t11e/go-pebbleclient
-  version: 76e81212c7fbfc06a538da87cdde1f36138c3379
+  version: bbeae253010047eafaf48c641dc10d26148b331c
+- name: github.com/vektra/mockery
+  version: 3603a98efa82b3b34d74b22cc3c1a2f961e03b21
 - name: golang.org/x/net
-  version: 8a52c78636f6b7be1b1e5cb58b01a85f1e082659
+  version: 0c607074acd38c5f23d1344dfe74c977464d1257
   subpackages:
   - context
   - context/ctxhttp
