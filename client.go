@@ -7,6 +7,8 @@ import (
 )
 
 type Client interface {
+	Get(uid string, options GetOptions) (*PostItem, error)
+	GetMany(uids []string, options GetManyOptions) (*GetManyOutput, error)
 }
 
 type client struct {
