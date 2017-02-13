@@ -1,7 +1,7 @@
 package: github.com/t11e/go-groveclient
 import:
 - package: github.com/t11e/go-pebbleclient
-  version: master
+  version: bbeae253010047eafaf48c641dc10d26148b331c
 - package: github.com/stretchr/testify
   subpackages:
   - assert
