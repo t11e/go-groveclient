@@ -29,8 +29,9 @@ type Post struct {
 	Protected        *json.RawMessage `json:"protected,omitempty"`
 	Tags             []string         `json:"tags"`
 	Deleted          bool             `json:"deleted"`
-	Published        bool             `json:"deleted"`
+	Published        bool             `json:"published"`
 	ExternalId       string           `json:"external_id"`
+	Version          int              `json:"version"`
 }
 
 func (post *Post) GetDocument() (DocumentAttributes, error) {

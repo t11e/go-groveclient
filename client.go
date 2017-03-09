@@ -1,6 +1,8 @@
 package groveclient
 
 import (
+	"bytes"
+	"encoding/json"
 	"strings"
 
 	pc "github.com/t11e/go-pebbleclient"
@@ -11,6 +13,7 @@ import (
 type Client interface {
 	Get(uid string, options GetOptions) (*PostItem, error)
 	GetMany(uids []string, options GetManyOptions) (*GetManyOutput, error)
+	Update(postItem *PostItem) (*PostItem, error)
 }
 
 type client struct {
@@ -78,6 +81,24 @@ func (c *client) GetMany(uids []string, options GetManyOptions) (*GetManyOutput,
 	err := c.c.Get("/posts/:uids", &pc.RequestOptions{
 		Params: params,
 	}, &out)
+	if err != nil {
+		return nil, err
+	}
+	return &out, err
+}
+
+func (c *client) Update(postItem *PostItem) (*PostItem, error) {
+	params := pc.Params{
+		"uid": postItem.Post.Uid,
+	}
+	payload, err := json.Marshal(postItem)
+	if err != nil {
+		return nil, err
+	}
+	var out PostItem
+	err = c.c.Put("/posts/:uid", &pc.RequestOptions{
+		Params: params,
+	}, bytes.NewReader(payload), &out)
 	if err != nil {
 		return nil, err
 	}
