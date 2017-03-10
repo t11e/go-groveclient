@@ -3,6 +3,8 @@ package groveclient
 import (
 	"encoding/json"
 	"time"
+
+	pebble "github.com/t11e/go-pebbleclient"
 )
 
 func Int(value int) *int {
@@ -20,7 +22,7 @@ func Bool(value bool) *bool {
 type DocumentAttributes map[string]interface{}
 
 type Post struct {
-	Uid              string           `json:"uid"`
+	Uid              pebble.UID       `json:"uid"`
 	CreatedAt        time.Time        `json:"created_at"`
 	UpdatedAt        time.Time        `json:"updated_at"`
 	Document         *json.RawMessage `json:"document,omitempty"`

@@ -21,7 +21,7 @@ imports:
   - assert
   - mock
 - name: github.com/t11e/go-pebbleclient
-  version: c4ce1081b071a857e559afd2eab76cb84547bf7d
+  version: 0c9dd530bbc711651c238938174046112cb0da16
 - name: github.com/vektra/mockery
   version: 3603a98efa82b3b34d74b22cc3c1a2f961e03b21
 - name: golang.org/x/net
