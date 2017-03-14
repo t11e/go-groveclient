@@ -3,7 +3,9 @@ package groveclient
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"strings"
+	"time"
 
 	pc "github.com/t11e/go-pebbleclient"
 )
@@ -13,7 +15,21 @@ import (
 type Client interface {
 	Get(uid string, options GetOptions) (*PostItem, error)
 	GetMany(uids []string, options GetManyOptions) (*GetManyOutput, error)
-	Update(postItem *PostItem) (*PostItem, error)
+	Update(uid string, pu PostUpdate, options UpdateOptions) (*PostItem, error)
+}
+
+type PostUpdate struct {
+	CreatedAt        *time.Time      `json:"created_at,omitempty"`
+	UpdatedAt        *time.Time      `json:"updated_at,omitempty"`
+	Document         json.RawMessage `json:"document,omitempty"`
+	ExternalDocument json.RawMessage `json:"external_document,omitempty"`
+	Sensitive        json.RawMessage `json:"sensitive,omitempty"`
+	Protected        json.RawMessage `json:"protected,omitempty"`
+	Tags             *[]string       `json:"tags,omitempty",`
+	Deleted          *bool           `json:"deleted,omitempty"`
+	Published        *bool           `json:"published,omitempty"`
+	ExternalId       string          `json:"external_id,omitempty"`
+	Version          int             `json:"version,omitempty"`
 }
 
 type client struct {
@@ -27,6 +43,11 @@ type GetOptions struct {
 type GetManyOptions struct {
 	Limit *int
 	Raw   *bool
+}
+
+type UpdateOptions struct {
+	Merge      *bool   `json:"merge,omitempty"`
+	ExternalID *string `json:"external_id,omitempty"`
 }
 
 type GetManyOutput struct {
@@ -87,20 +108,39 @@ func (c *client) GetMany(uids []string, options GetManyOptions) (*GetManyOutput,
 	return &out, err
 }
 
-func (c *client) Update(postItem *PostItem) (*PostItem, error) {
+func (c *client) Update(uid string, pu PostUpdate, options UpdateOptions) (*PostItem, error) {
 	params := pc.Params{
-		"uid": postItem.Post.Uid,
+		"uid": uid,
 	}
-	payload, err := json.Marshal(postItem)
+	if options.Merge != nil {
+		params["merge"] = *options.Merge
+	}
+	if options.ExternalID != nil {
+		params["external_id"] = *options.ExternalID
+	}
+	payload, err := json.Marshal(&struct {
+		Post PostUpdate `json:"post"`
+	}{pu})
 	if err != nil {
 		return nil, err
 	}
-	var out PostItem
+	result := PostItem{}
 	err = c.c.Put("/posts/:uid", &pc.RequestOptions{
 		Params: params,
-	}, bytes.NewReader(payload), &out)
-	if err != nil {
-		return nil, err
+	}, bytes.NewReader(payload), &result)
+	if err == nil {
+		return &result, nil
 	}
-	return &out, err
+	if reqErr, ok := err.(*pc.RequestError); ok && reqErr.Resp.StatusCode == 409 {
+		return &result, ConflictError{uid}
+	}
+	return &result, err
+}
+
+type ConflictError struct {
+	uid string
+}
+
+func (e ConflictError) Error() string {
+	return fmt.Sprintf("grove post failed to update due to version conflict: %s", e.uid)
 }
