@@ -131,16 +131,29 @@ func (c *client) Update(uid string, pu PostUpdate, options UpdateOptions) (*Post
 	if err == nil {
 		return &result, nil
 	}
-	if reqErr, ok := err.(*pc.RequestError); ok && reqErr.Resp.StatusCode == 409 {
-		return &result, ConflictError{uid}
+	if reqErr, ok := err.(*pc.RequestError); ok {
+		switch reqErr.Resp.StatusCode {
+		case 404:
+			return &result, NoSuchPostError{uid}
+		case 409:
+			return &result, ConflictError{uid}
+		}
 	}
 	return &result, err
 }
 
+type NoSuchPostError struct {
+	UID string
+}
+
+func (e NoSuchPostError) Error() string {
+	return fmt.Sprintf("grove post not found: %s", e.UID)
+}
+
 type ConflictError struct {
-	uid string
+	UID string
 }
 
 func (e ConflictError) Error() string {
-	return fmt.Sprintf("grove post failed to update due to version conflict: %s", e.uid)
+	return fmt.Sprintf("grove post failed to update due to version conflict: %s", e.UID)
 }
