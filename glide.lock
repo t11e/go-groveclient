@@ -1,8 +1,8 @@
 hash: b92cb6e6ff1befa9a5e8409d0a6dc2f612394720f1adff0a4bd393e566b66f81
-updated: 2016-05-21T19:14:54.771221082-04:00
+updated: 2017-03-20T11:33:48.796168762-04:00
 imports:
 - name: github.com/davecgh/go-spew
-  version: 2df174808ee097f90d259e432cc04442cf60be21
+  version: 04cdfd42973bb9c8589fd6a731800cf222fde1a9
   subpackages:
   - spew
 - name: github.com/ernesto-jimenez/httplogger
@@ -16,17 +16,17 @@ imports:
 - name: github.com/stretchr/objx
   version: cbeaeb16a013161a98496fad62933b1d21786672
 - name: github.com/stretchr/testify
-  version: 6cb3b85ef5a0efef77caef88363ec4d4b5c0976d
+  version: 4d4bfba8f1d1027c4fdbe371823030df51419987
   subpackages:
   - assert
   - mock
 - name: github.com/t11e/go-pebbleclient
-  version: 0c9dd530bbc711651c238938174046112cb0da16
+  version: c2bfd68830e5562e0abe37561e95e262909f20fb
 - name: github.com/vektra/mockery
-  version: 3603a98efa82b3b34d74b22cc3c1a2f961e03b21
+  version: 35af6ab863ac461de148c218959646621c1c3d2c
 - name: golang.org/x/net
-  version: 0c607074acd38c5f23d1344dfe74c977464d1257
+  version: a6577fac2d73be281a500b310739095313165611
   subpackages:
   - context
   - context/ctxhttp
-devImports: []
+testImports: []
