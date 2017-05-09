@@ -1,5 +1,5 @@
 hash: b92cb6e6ff1befa9a5e8409d0a6dc2f612394720f1adff0a4bd393e566b66f81
-updated: 2017-03-20T11:33:48.796168762-04:00
+updated: 2017-05-09T16:00:11.809016982-04:00
 imports:
 - name: github.com/davecgh/go-spew
   version: 04cdfd42973bb9c8589fd6a731800cf222fde1a9
@@ -7,8 +7,10 @@ imports:
   - spew
 - name: github.com/ernesto-jimenez/httplogger
   version: 86cc44f6150a7e9dca8586e425a9c73e71f8ae7d
+- name: github.com/jpillora/backoff
+  version: 06c7a16c845dc8e0bf575fafeeca0f5462f5eb4d
 - name: github.com/pkg/errors
-  version: f85d45fecf0c92c382e731cb03f481957e2ccdd1
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/pmezard/go-difflib
   version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
@@ -21,7 +23,7 @@ imports:
   - assert
   - mock
 - name: github.com/t11e/go-pebbleclient
-  version: c2bfd68830e5562e0abe37561e95e262909f20fb
+  version: 3f9bda3d582c83893bfd07f518f8133a46e41929
 - name: github.com/vektra/mockery
   version: 35af6ab863ac461de148c218959646621c1c3d2c
 - name: golang.org/x/net
