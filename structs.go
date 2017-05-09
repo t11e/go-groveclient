@@ -22,7 +22,7 @@ func Bool(value bool) *bool {
 type DocumentAttributes map[string]interface{}
 
 type Post struct {
-	Uid              pebble.UID       `json:"uid"`
+	UID              pebble.UID       `json:"uid"`
 	CreatedAt        time.Time        `json:"created_at"`
 	UpdatedAt        time.Time        `json:"updated_at"`
 	Document         *json.RawMessage `json:"document,omitempty"`
@@ -32,7 +32,7 @@ type Post struct {
 	Tags             []string         `json:"tags"`
 	Deleted          bool             `json:"deleted"`
 	Published        bool             `json:"published"`
-	ExternalId       string           `json:"external_id"`
+	ExternalID       string           `json:"external_id"`
 	Version          int              `json:"version"`
 }
 

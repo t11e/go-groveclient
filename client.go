@@ -25,10 +25,10 @@ type PostUpdate struct {
 	ExternalDocument json.RawMessage `json:"external_document,omitempty"`
 	Sensitive        json.RawMessage `json:"sensitive,omitempty"`
 	Protected        json.RawMessage `json:"protected,omitempty"`
-	Tags             *[]string       `json:"tags,omitempty",`
+	Tags             *[]string       `json:"tags,omitempty"`
 	Deleted          *bool           `json:"deleted,omitempty"`
 	Published        *bool           `json:"published,omitempty"`
-	ExternalId       string          `json:"external_id,omitempty"`
+	ExternalID       string          `json:"external_id,omitempty"`
 	Version          int             `json:"version,omitempty"`
 }
 
